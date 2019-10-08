@@ -1,0 +1,9 @@
+{
+  city_name: review.city_name,
+  accessibility: review.accessibility,
+  cost: review.cost,
+  quality: review.quality,
+  entertainment: review.entertainment,
+  user_id: review.user_id,
+  city_id: review.city_id
+}

@@ -1,0 +1,5 @@
+{
+  id: city.id,
+  name: city.name,
+  state: city.state
+}

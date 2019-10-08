@@ -1,0 +1,3 @@
+render partial: "city.json.jb", locals: { city: @city }
+
+#show review
