@@ -1,0 +1,9 @@
+user = render partial: "user.json.jb", locals: { user: @user }
+
+user[:reviews] = @user.reviews.map do |review|
+  render partial: "api/reviews/review", locals: { review: review }
+end
+
+user[:city_name] = @user.city.name
+
+user

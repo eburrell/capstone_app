@@ -6,18 +6,21 @@ class Api::ReviewsController < ApplicationController
   end
 
   def show
-    @review = Review.find(by params[:id])
+    # @reviews = current_user.reviews
+    @review = Review.find(params[:id])
     render "show.json.jb"
   end
 
   def create
     @review = Review.new(
       id: params[:id],
-      city_name: params[:city_name],
       accessibility: params[:accessibility],
       cost: params[:cost],
+      quality: params[:quality],
       safety: params[:safety],
       entertainment: params[:entertainment],
+      user_id: params[:user_id],
+      city_id: params[:city_id]
       )
     if @review.save
       render "show.json.jb"
@@ -28,14 +31,19 @@ class Api::ReviewsController < ApplicationController
 
   def update
     @review = Review.find(params[:id])
+    @city = @review.city
 
-    @review.id = params[:id]
-    @review.city_name = params[:city_name]
-    @review.accessibility = params[:accessibility]
-    @review.cost = params[:cost]
-    @review.safety = params[:safety]
-    @review.entertainment = params[:entertainment]
+    @review.id = params[:id] || @review.id
+    @city.name = params[:city] || @city.name
+    @city.state = params[:state] || @city.state
+    @review.accessibility = params[:accessibility] || @review.accessibility
+    @review.cost = params[:cost] || @review.cost
+    @review.safety = params[:safety] || @review.safety
+    @review.entertainment = params[:entertainment] || @review.entertainment
+    @review.user_id = params[:user_id] || @review.user_id
+    @review.city_id = params[:city_id] || @review.city_id
     if @review.save
+      @city.save
       render "show.json.jb"
     else
       render json: {errors: @review.errors.full_messages}, status: 422
@@ -46,7 +54,7 @@ class Api::ReviewsController < ApplicationController
     review = Review.find(params[:id])
     review.destroy
 
-    render json: {message: "This Review have been deleted."}
+    render json: {message: "This Review has been deleted."}
   end
 
 end

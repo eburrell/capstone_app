@@ -1,9 +1,11 @@
 {
-  city_name: review.city_name,
+  id: review.id,
   accessibility: review.accessibility,
   cost: review.cost,
   quality: review.quality,
+  safety: review.safety,
   entertainment: review.entertainment,
   user_id: review.user_id,
-  city_id: review.city_id
+  city_id: review.city_id,
+  avg_rating: review.avg_rating
 }

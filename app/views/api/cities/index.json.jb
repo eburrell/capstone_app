@@ -1,3 +1,10 @@
-@cities.map do |city|
-  render partial: "city.json.jb", locals: { city: city }
-end
+{
+  cities: @cities.map do |city|
+    render partial: "city.json.jb", locals: { city: city }
+  end,
+
+  highest_rated_city: City.all.max_by{|a| a.avg_rating},
+  most_reviewed_city: City.all.max_by{|a| a.reviews.count}
+}
+
+

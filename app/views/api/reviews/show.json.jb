@@ -1,1 +1,6 @@
-render partial: "review.json.jb", locals: { review: @review }
+review = render partial: "review.json.jb", locals: { review: @review }
+
+review[:city] = render partial: "api/cities/city", locals: { city: @review.city }
+
+review
+

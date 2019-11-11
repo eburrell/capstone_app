@@ -1,0 +1,9 @@
+{
+  id: user.id,
+  first_name: user.first_name,
+  last_name: user.last_name,
+  username: user.username,
+  zip_code: user.zip_code,
+  birth_date: user.birth_date,
+  city_id: user.city_id
+}

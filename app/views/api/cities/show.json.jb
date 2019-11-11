@@ -1,3 +1,15 @@
-render partial: "city.json.jb", locals: { city: @city }
+city = render partial: "city.json.jb", locals: { city: @city }
 
-#show review
+city[:reviews] = @city.reviews.map do |review|
+  render partial: "api/reviews/review", locals: { review: review }
+end
+
+city[:avg_rating] = @city.avg_rating
+city[:avg_access] = @city.avg_access
+city[:avg_cost] = @city.avg_cost
+city[:avg_quality] = @city.avg_quality
+city[:avg_safety] = @city.avg_safety
+city[:avg_entertainment] = @city.avg_entertainment
+
+
+city
